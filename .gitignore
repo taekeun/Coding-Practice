@@ -1,1 +1,4 @@
 *.class
+
+# VI swap file
+*.swp
