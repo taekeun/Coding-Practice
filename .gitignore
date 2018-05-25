@@ -2,3 +2,5 @@
 
 # VI swap file
 *.swp
+
+.idea
