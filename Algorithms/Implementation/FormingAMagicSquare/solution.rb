@@ -1,6 +1,7 @@
 #!/bin/ruby
 
 # https://www.hackerrank.com/challenges/magic-square-forming/problem
+# Forming a Magic Square
 
 require 'json'
 require 'stringio'
