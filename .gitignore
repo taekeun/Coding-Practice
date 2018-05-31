@@ -4,3 +4,4 @@
 *.swp
 
 .idea
+.byebug_history
