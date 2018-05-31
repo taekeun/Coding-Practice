@@ -1,4 +1,5 @@
 #!/bin/ruby
+# https://www.hackerrank.com/challenges/matrix-rotation-algo/problem
 
 require 'json'
 require 'stringio'
@@ -96,13 +97,13 @@ def make_matrix(arrays, layer, matrix)
 end
 
 def rotate(arrays, r)
-  arrays.each do |a|
-    r.times do |_|
-      v = a.pop
-      a.unshift(v)
+  arrays.map do |array|
+    a = Array.new(array.length)
+    array.each_with_index do |v, i|
+      a[(i+r)%array.length] = v
     end
+    a
   end
-  arrays
 end
 
 def puts_matrix(matrix)
@@ -123,7 +124,7 @@ def matrix_rotation(matrix, r)
   rows = matrix.length
   columns = matrix.first.length
   flattened = flatten_matrix(matrix)
-  rotate(flattened, r)
+  flattened = rotate(flattened, r)
   make_matrix(flattened, 0, Array.new(rows).map!{Array.new(columns)})
 end
 
