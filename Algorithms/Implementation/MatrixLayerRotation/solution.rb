@@ -47,15 +47,15 @@ def make_matrix(arrays, layer, matrix)
 
   array = arrays.shift
 
-  debug array.join(',')
-  arrays.each do |a|
-    debug a.join(',')
-  end
+  # debug array.join(',')
+  # arrays.each do |a|
+  #   debug a.join(',')
+  # end
 
-  debug "layer#{layer}"
+  # debug "layer#{layer}"
 
-  puts_matrix matrix
-  debug '---'
+  # puts_matrix matrix
+  # debug '---'
 
   #left side
   (1..rows).each do |_|
@@ -64,7 +64,7 @@ def make_matrix(arrays, layer, matrix)
   end
   r -= 1
 
-  puts_matrix matrix
+  # puts_matrix matrix
 
   #bottom
   (1..(columns - 1)).each do |_|
@@ -72,7 +72,7 @@ def make_matrix(arrays, layer, matrix)
     matrix[r][c] = array.shift
   end
 
-  puts_matrix matrix
+  # puts_matrix matrix
 
   #right
   (1..(rows - 1)).each do |_|
@@ -80,7 +80,7 @@ def make_matrix(arrays, layer, matrix)
     matrix[r][c] = array.shift
   end
 
-  puts_matrix matrix
+  # puts_matrix matrix
 
   #top
   (1..(columns - 1)).each do |_|
@@ -89,7 +89,7 @@ def make_matrix(arrays, layer, matrix)
     matrix[r][c] = array.shift
   end
 
-  puts_matrix matrix
+  # puts_matrix matrix
 
   return matrix if arrays.empty?
 
@@ -107,8 +107,8 @@ def rotate(arrays, r)
 end
 
 def puts_matrix(matrix)
-  debug 'M'
-  matrix.each {|r| debug(r.join(','))}
+  # debug 'M'
+  # matrix.each {|r| debug(r.join(','))}
 end
 
 def debug(str)
