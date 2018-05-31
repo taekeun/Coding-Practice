@@ -165,9 +165,15 @@ class TestSolution < Test::Unit::TestCase
                [1, 1]],
       r: 3
     }
+    @sample_d = {
+      raw: Array.new(300).tap{|a| a.map!{Array.new(300).fill(1)}},
+      result: Array.new(300).tap{|a| a.map!{Array.new(300).fill(1)}},
+      r: 10**9
+    }
   end
 
   def test_flatten_matrix
+    # pend
     assert_equal([[1]], flatten_matrix([[1]]))
     assert_equal([[1, 3, 4, 2]], flatten_matrix([[1, 2], [3, 4]]))
     assert_equal([[1, 4, 5, 6, 3, 2]], flatten_matrix([[1, 2, 3], [4, 5, 6]]))
@@ -180,6 +186,7 @@ class TestSolution < Test::Unit::TestCase
   end
 
   def test_make_matrix
+    # pend
     assert_equal([[1]], make_matrix([[1]], 0, Array.new(1).tap{|a| a.map!{Array.new(1)}}))
     assert_equal([[1, 2], [3, 4]], make_matrix([[1, 3, 4, 2]], 0, Array.new(2).tap{|a| a.map!{Array.new(2)}}))
     assert_equal([[1, 2, 3], [4, 5, 6]], make_matrix([[1, 4, 5, 6, 3, 2]], 0, Array.new(2).tap{|a| a.map!{Array.new(3)}}))
@@ -194,6 +201,7 @@ class TestSolution < Test::Unit::TestCase
   end
 
   def test_rotate_all
+    # pend
     assert_equal([[1]], rotate([[1]], 1))
     assert_equal([[3, 1, 2], [6, 4, 5]], rotate([[1, 2, 3], [4, 5, 6]], 1))
     assert_equal([[2, 3, 1], [5, 6, 4]], rotate([[1, 2, 3], [4, 5, 6]], 2))
@@ -204,5 +212,6 @@ class TestSolution < Test::Unit::TestCase
     assert_equal(@sample_a[:result], matrix_rotation(@sample_a[:raw], @sample_a[:r]))
     assert_equal(@sample_b[:result], matrix_rotation(@sample_b[:raw], @sample_b[:r]))
     assert_equal(@sample_c[:result], matrix_rotation(@sample_c[:raw], @sample_c[:r]))
+    assert_equal(@sample_d[:result], matrix_rotation(@sample_d[:raw], @sample_d[:r]))
   end
 end
