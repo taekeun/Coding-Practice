@@ -2,8 +2,6 @@
 # https://www.hackerrank.com/challenges/matrix-rotation-algo/problem
 # > ruby test.rb
 
-# 다음엔... 굳이 펼치지 않고 1칸씩 이동하는 로직을 짤수 있을듯.
-
 require 'test/unit'
 require 'byebug'
 require 'benchmark'
@@ -13,17 +11,20 @@ def flatten_matrix(matrix, arrays = [])
 
   # left side
   matrix.length.times do |i|
-    array.push(extract_matrix_element(matrix, i, false))
+    array.push(matrix[i].shift)
+    matrix.delete_at(i) if matrix[i].empty?
   end
+
   # bottom row
   array.push(matrix.pop)
 
   # right side reverse
   matrix.length.times.reverse_each do |i|
-    array.push(extract_matrix_element(matrix, i))
+    array.push(matrix[i].pop)
+    matrix.delete_at(i) if matrix[i].empty?
   end
 
-  # top side
+  # top row
   top = matrix.shift&.reverse
   array.push(top) if top
 
@@ -37,12 +38,6 @@ def flatten_matrix(matrix, arrays = [])
   flatten_matrix(matrix, arrays)
 end
 
-def extract_matrix_element(matrix, row, is_last = true)
-  element = is_last ? matrix[row].pop : matrix[row].shift
-  matrix.delete_at(row) if matrix[row].empty?
-  element
-end
-
 def make_matrix(arrays, layer, matrix)
   r = layer
   c = layer
@@ -51,16 +46,6 @@ def make_matrix(arrays, layer, matrix)
 
   array = arrays.shift
 
-  # debug array.join(',')
-  # arrays.each do |a|
-  #   debug a.join(',')
-  # end
-
-  # debug "layer#{layer}"
-
-  # puts_matrix matrix
-  # debug '---'
-
   #left side
   (1..rows).each do |_|
     matrix[r][c] = array.shift
@@ -68,15 +53,11 @@ def make_matrix(arrays, layer, matrix)
   end
   r -= 1
 
-  # puts_matrix matrix
-
   #bottom
   (1..(columns - 1)).each do |_|
     c += 1
     matrix[r][c] = array.shift
   end
-
-  # puts_matrix matrix
 
   #right
   (1..(rows - 1)).each do |_|
@@ -84,16 +65,12 @@ def make_matrix(arrays, layer, matrix)
     matrix[r][c] = array.shift
   end
 
-  # puts_matrix matrix
-
   #top
   (1..(columns - 1)).each do |_|
     break if array.empty?
     c -= 1
     matrix[r][c] = array.shift
   end
-
-  # puts_matrix matrix
 
   return matrix if arrays.empty?
 
@@ -108,15 +85,6 @@ def rotate(arrays, r)
     end
     a
   end
-end
-
-def puts_matrix(matrix)
-  # debug 'M'
-  # matrix.each {|r| debug(r.join(','))}
-end
-
-def debug(str)
-  # puts str
 end
 
 def puts_matrix_rotation(matrix, r)
