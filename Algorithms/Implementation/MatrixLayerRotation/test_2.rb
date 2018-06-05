@@ -6,46 +6,52 @@ require 'test/unit'
 require 'byebug'
 require 'benchmark'
 
+module Direction
+  DOWN = 1
+  RIGHT = 2
+  UP = 3
+  LEFT = 4
+end
+
+def side_adder(cur, limit, rotate)
+  v = limit - cur
+  if v.abs < rotate
+    cur += v
+    rotate -= v.abs
+  else
+    cur += rotate * ( v < 0 ? -1 : 1)
+    rotate = 0
+  end
+  [cur, rotate]
+end
+
 def move_side(cur_row, cur_col, min_row, max_row, min_col, max_col, rotate)
-  if cur_row < max_row && cur_col == min_col # move down
-    v = max_row - cur_row
-    if v < rotate
-      cur_row += v
-      rotate -= v
-    else
-      cur_row += rotate
-      rotate = 0
-    end
-  elsif cur_row == max_row && cur_col < max_col # move right
-    v = max_col - cur_col
-    if v < rotate
-      cur_col += v
-      rotate -= v
-    else
-      cur_col += rotate
-      rotate = 0
-    end
-  elsif cur_row > min_row && cur_col == max_col # move up
-    v = cur_row - min_row
-    if v < rotate
-      cur_row -= v
-      rotate -= v
-    else
-      cur_row -= rotate
-      rotate = 0
-    end
-  else # move left
-    v = cur_col - min_col
-    if v < rotate
-      cur_col -= v
-      rotate -= v
-    else
-      cur_col -= rotate
-      rotate = 0
-    end
+  d = get_direction(cur_row, cur_col, min_row, max_row, min_col, max_col)
+
+  case d
+  when Direction::DOWN
+    cur_row, rotate = side_adder(cur_row, max_row, rotate)
+  when Direction::RIGHT
+    cur_col, rotate = side_adder(cur_col, max_col, rotate)
+  when Direction::UP
+    cur_row, rotate = side_adder(cur_row, min_row, rotate)
+  when Direction::LEFT
+    cur_col, rotate = side_adder(cur_col, min_col, rotate)
   end
 
   return [cur_row, cur_col, rotate]
+end
+
+def get_direction(row, col, min_row, max_row, min_col, max_col)
+  if row < max_row && col == min_col # move down
+    Direction::DOWN
+  elsif row == max_row && col < max_col # move right
+    Direction::RIGHT
+  elsif row > min_row && col == max_col # move up
+    Direction::UP
+  else # move left
+    Direction::LEFT
+  end
 end
 
 def rotated_position(cur_row, cur_col, rows, cols, rotate)
