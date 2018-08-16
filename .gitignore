@@ -5,3 +5,7 @@
 
 .idea
 .byebug_history
+
+# scala project
+**/scala/project/
+**/scala/target/
