@@ -4,10 +4,12 @@ import java.io._
 
 object Solution {
   def conditionalAction(n: Int): String = {
-    if(n % 2 != 0) "Weird"
-    else if(n <= 5) "Not Weird"
-    else if(n <= 20) "Weird"
-    else "Not Weird"
+    n match {
+      case x if x % 2 != 0 => "Weird"
+      case x if x <= 5 => "Not Weird"
+      case x if x <= 20 => "Weird"
+      case _ => "Not Weird"
+    }
   }
 
   def main(args: Array[String]) {
