@@ -1,4 +1,5 @@
-// https://www.hackerrank.com/challenges/30-arrays/problem
+// https://www.hackerrank.com/challenges/30-dictionaries-and-maps/problem
+// TODO refactoring
 
 import java.io._
 
@@ -21,7 +22,7 @@ object Solution {
     }
 
     for(_ <- 1 to n) {
-      val name = stdin.readLine
+      val name = stdin.readLine.trim
       println(solve(phoneBook, name))
     }
   }
