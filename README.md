@@ -1,4 +1,4 @@
-Codewars
+Codewars https://www.codewars.com/users/tk.y/stats
 
 Codility
 
