@@ -11,9 +11,15 @@ end
 def worker(n, i)
   return i if n < 10
 
-  # 자릿수로 별로 숫자를 분해해야 하네.
-  # 문자열로 바꿔서 처리하는게 간편할듯.
+  worker(
+    n.to_s.split("").inject{|m, nn| m.to_i * nn.to_i},
+    i+1
+  )
 end
 
 puts persistence(39) == 3
+puts persistence(999) == 4
 puts persistence(4) == 0
+puts persistence(25) == 2
+puts persistence(999) == 4
+puts persistence(444) == 3
