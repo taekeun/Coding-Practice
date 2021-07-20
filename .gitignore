@@ -9,3 +9,9 @@
 # scala project
 **/scala/project/
 **/scala/target/
+
+# ruby
+## Environment normalization:
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
