@@ -14,4 +14,8 @@ def longest_consec(strarr, k)
     longest = cs if cs.length > longest.length
   end
   longest
+
+  # more ruby way
+  # return '' unless k.between?(1, strarr.length)
+  # strarr.each_cons(k).map(&:join).max_by(&:length)
 end
