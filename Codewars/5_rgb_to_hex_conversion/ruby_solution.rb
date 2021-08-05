@@ -18,4 +18,6 @@ end
 
 def rgb(r, g, b)
   [r,g,b].map{|n| hex(n)}.join
+
+#   "%.2X%.2X%.2X" % ([r,g,b].map{ |n| [[n, 255].min, 0].max })
 end
