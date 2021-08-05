@@ -12,7 +12,8 @@ def hex(n)
   return '00' if n <= 0
   return 'FF' if n >= 255
 
-  hex_code(n/16) + hex_code(n%16)
+  n.to_s(16).upcase
+#   hex_code(n/16) + hex_code(n%16)
 end
 
 def rgb(r, g, b)
