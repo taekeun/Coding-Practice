@@ -12,6 +12,7 @@
 # end
 
 def pig_it text
+  # text.gsub(/(\w)(\w*)/, '\2\1ay')
   text.split.map { |t| t.match?(/\w/) ? "#{t[1..-1]}#{t[0]}ay" : t }.join(" ")
   # text.split.map { |t| changer(t) }.join(" ")
 end
