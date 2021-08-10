@@ -6,7 +6,8 @@
 # If the string already ends with a number, the number should be incremented by 1.
 # If the string does not end with a number. the number 1 should be appended to the new string.
 def increment_string(input)
-  snum = input.slice(/\d+$/).to_s
-  num = (snum.to_i + 1)
-  "#{input.split(/\d+$/).first}#{num.to_s.rjust(snum.length, '0')}"
+  # snum = input.slice(/\d+$/).to_s
+  # num = (snum.to_i + 1)
+  # "#{input.split(/\d+$/).first}#{num.to_s.rjust(snum.length, '0')}"
+  input.sub(/\d*$/) {|d| d.empty? ? 1 : d.succ }
 end
