@@ -37,7 +37,7 @@ class RomanNumerals
       return 0 if roman.empty?
 
       rs = SYMBOLS[roman[0]] < SYMBOLS[roman[1]].to_i ? roman[0..1] : roman[0]
-      SYMBOLS[rs] + from_r(roman[rs.length..])
+      SYMBOLS[rs] + from_r(roman[rs.length..-1])
     end
   end
 end
