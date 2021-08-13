@@ -21,4 +21,6 @@ def top_3_words(text)
   # words.sort_by{|_, v| -v}[0..2].map{|x| x.first }
 
   text.downcase.scan(/\w+(?:'*)\w*/).inject(Hash.new(0)){|h, w| h[w] += 1; h}.sort_by{|_, v| -v}[0..2].map{|x| x.first }
+
+  # text.downcase.scan(/[\w']+/).select{|x| /\w/ =~ x}.group_by{|x| x.downcase}.sort_by{|_, v| -v.count}.first(3).map(&:first)
 end
